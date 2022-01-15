@@ -1,0 +1,251 @@
+<style>
+    .root {
+        display: flex;
+       
+        justify-content: center;
+
+
+    }
+
+    .box {
+        width: 850px;
+        /* height: 500px; */
+        background-color: #d7d894;
+        border-radius: 20px;
+        margin-top: 70px;
+        padding: 20px;
+        position: absolute;
+        top: 5px;
+    }
+
+    .gap {
+        margin-top: 10px;
+    }
+
+
+    .dashboard {
+        /* width: 1000px; */
+        height: 560px;
+        background-color: #f1f2f6;
+        /* border-radius: 20px; */
+        /* margin-top: 70px; */
+        padding: 10px;
+        width: 300px;
+    }
+
+    .dgap {
+        margin-top: 15px;
+        width: 250px;
+    }
+</style>
+<html>
+
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/94afcec69c.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/javascripts/project.js"></script>
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="/images/product.png" width="30" height="30" class="d-inline-block align-top" alt="no image found">
+            Product Management
+        </a>
+        <div>
+            <img src="/images/<%=resulT.picture%>" style="border-radius: 16px; width: 30px;" />&nbsp;&nbsp;
+            <span
+                style="font-weight: bold; letter-spacing: 1.5; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size:larger;">
+                <%= resulT.adminName%>
+            </span>
+        </div>
+    </nav>
+    <div class="form-row">
+        <div class="form-group col-md-2" style="display: flex; align-items: center; justify-content:left;">
+            <div class="dashboard">
+                <div><button type="button" href="" class="btn btn-light dgap"
+                        style="font-size:16px; font-weight:bold ;">Dashboard</button></div>
+                <div><a type="button" href="/home/productinterface" class="btn btn-light dgap">Add Products</a></div>
+                <div><a type="button" href="/home/displayproducts" class="btn btn-light dgap">List Of Products </a></div>
+                <div><a type="button" href="/home/searchbyid" class="btn btn-light dgap">Serach Products</a></div>
+                <div><a type="button" href="/admin/logout" class="btn btn-light dgap">Logout</a></div>
+            </div>
+        </div>
+        <div class="form-group col-md-10" style="display: flex; align-items:center; justify-content:center;">
+
+
+
+            <form action="/home/updateproduct" method="post">
+                <input type="hidden" value="<%=result.productid %>" name="productid">
+                <div class="root">
+                    <div class="box">
+                        <div class="row gap">
+                            <div
+                                style="padding-left: 20px; font-size: 25px; color:rgb(250, 109, 109); font-weight: bolder; letter-spacing:3px;">
+                                <img src="/images/product.png" height="30px" width="30px">
+                                Product Interface [Updation]
+                            </div>
+                            <div>
+                                <b><a href="/home/displayproducts"
+                                        style="width: 300px; display: flex; justify-content: right; align-items: center; font-weight:650; font-size: 25;">Data
+                                        List</a></b>
+                            </div>
+                        </div>
+
+                        <div class="row gap">
+                            <div class="col">
+                                <input type="text" value="<%=result.productname%>" required name="productname"
+                                    class="form-control" placeholder="product Name">
+                            </div>
+                            <!-- <div class="col">
+                                    <input type="text" class="form-control" placeholder="product Category">
+                                </div> -->
+                        </div>
+
+                        <div class="row gap">
+                            <div class="col">
+                                <input type="text" value="<%=result.productmodel%>" name="productmodel"
+                                    class="form-control" placeholder="product Model">
+                            </div>
+                            <!-- <div class="col">
+                                    <input type="text" class="form-control" placeholder="product Rate">
+                                </div> -->
+                        </div>
+
+
+                        <div class="row gap">
+
+                            <div class="col" style="display: flex; justify-content: center; align-items: center; ">
+                                <% if(result.category=="Food" ) {%>
+                                    <input checked type="radio" name="category" id="Food" value="Food"
+                                        style="padding:5px;"> <i
+                                        style="color:orangered; padding: 5px;font-size:25px; margin-right: 20px;"
+                                        class="fas fa-utensils"></i>
+                                    <input type="radio" name="category" id="Electronics" style="padding: 5px;"
+                                        value="Electronics"> <i
+                                        style="color:blueviolet; padding: 5px;font-size:25px; margin-right: 20px;"
+                                        class="fas fa-laptop"></i>
+                                    <%} else if(result.category=="Electronics" ) {%>
+                                        <input type="radio" name="category" id="Food" value="Food" style="padding:5px;">
+                                        <i style="color:orangered; padding: 5px;font-size:25px; margin-right: 20px;"
+                                            class="fas fa-utensils"></i>
+                                        <input checked type="radio" name="category" id="Electronics"
+                                            style="padding: 5px;" value="Electronics"> <i
+                                            style="color:blueviolet; padding: 5px;font-size:25px; margin-right: 20px;"
+                                            class="fas fa-laptop"></i>
+                                        <%} %>
+                                            <input type="text" value="<%=result.gst%>" name="gst" id="gst"
+                                                class="form-control" style="width: 60px;" placeholder="GST">
+                            </div>
+                            <div class="col">
+                                <select id="ptype" class="form-control" name="producttype">
+                                    <option value="<%=result.producttypeid%>">
+                                        <%=result.producttypename%>
+                                    </option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="row gap">
+                            <div class="col">
+                                <select id="unit" class="form-control" name="unit">
+                                    <option value="<%=result.unitid %>">
+                                        <%=result.unitname%>
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col" style="display: flex; justify-content: center; align-items: center;">
+                                <% if(result.currencytype=="inr" ){ %>
+                                    <input checked type="radio" id="inr" value="inr" style="padding: 5px;"
+                                        name="currency"> <i class="fas fa-rupee-sign"
+                                        style="padding: 5px; font-size: 25px; color: rgb(65, 167, 65); margin-right: 10px;"></i>
+                                    <input type="radio" id="usd" value="usd" style="padding: 5px;" name="currency"> <i
+                                        class="fas fa-dollar-sign"
+                                        style="padding: 5px; font-size: 25px; color: navy;"></i>
+                                    <%}else if(result.currencytype=="usd" ){%>
+                                        <input type="radio" id="inr" value="inr" style="padding: 5px;" name="currency">
+                                        <i class="fas fa-rupee-sign"
+                                            style="padding: 5px; font-size: 25px; color: rgb(65, 167, 65); margin-right: 10px;"></i>
+                                        <input checked type="radio" id="usd" value="usd" style="padding: 5px;"
+                                            name="currency"> <i class="fas fa-dollar-sign"
+                                            style="padding: 5px; font-size: 25px; color: navy;"></i>
+                                        <%}%>
+                                            <input type="text" value="<%=result.price %>" class="form-control"
+                                                id="price" name="price"
+                                                style="width:60px; margin-right: 10px; margin-left: 10px;"
+                                                placeholder="Price">
+
+                            </div>
+                        </div>
+
+                        <div class="row gap">
+
+                            <div class="col">
+                                <select id="offer" class="form-control" name="offer">
+
+                                    <% if(result.offertype=="5" ) { %>
+                                        <option value="5">Festival Offer</option>
+                                        <%}else if(result.offertype=="12" ){%>
+                                            <option value="12">Exchange Offer</option>
+                                            <%}else{%>
+                                                <option value="2">Weekend Offer</option>
+                                                <%}%>
+
+                                </select>
+
+                            </div>
+                            <div class="col">
+                                <input id="discount" value="<%=result.offerrate%>" type="text" class="form-control"
+                                    placeholder="Offer Discount" name="offerrate">
+                            </div>
+                        </div>
+
+                        <div class="row gap">
+                            <div class="col">
+                                <input type="text" value="<%=result.stock%>" name="stock" class="form-control"
+                                    placeholder="Stock">
+                            </div>
+                            <div class="col">
+                                <img src="/images/<%=result.picture %>" width="40" alt="not found">
+                            </div>
+                        </div>
+
+                        <div class="row gap">
+                            <div class="col" style="display: flex; align-items: center; justify-content: center;">
+                                <button style="width: 150px;" type="submit" name="btn" value="Edit"
+                                    class="btn btn-primary">Edit</button>
+                            </div>
+                            <div class="col" style="display: flex; align-items: center; justify-content: center;">
+                                <button style="width: 150px;" type="submit" name="btn" value="Delete"
+                                    class="btn btn-primary">Delete</button>
+                            </div>
+                        </div>
+
+                        <div class="row gap">
+                            <div class="col" style="display: flex; align-items: center; justify-content: center;">
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<style>
+    .root {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+    }
+
+    .box {
+        width: 1000px;
+        /* height: 500px; */
+        background-color: #d7d894;
+        border-radius: 20px;
+        margin-top: 70px;
+        padding: 20px;
+    }
+
+    .gap {
+        margin-top: 10px;
+    }
+</style>
+<html>
+
+    <head>
+        <title>Admin Login</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/94afcec69c.js" crossorigin="anonymous"></script>
+        <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/javascripts/project.js"></script> -->
+
+    </head>
+
+    <body bgcolor="#dfe4ea">
+        <form action="/admin/checklogin" method="post">
+        <div class="root">
+        <div class="box">
+            <div class="form-row" >
+                <div class="form-group col-md-6">
+                  <img src="/images/backimage.png" style="margin-top: 17px;" width="550px" height="330px" alt="Image is not loading proper">
+                </div>
+                <div class="form-group col-md-6" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                    <div>
+                        <img src="/images/loginicon.png" width="80px" alt="no image">
+                    </div>
+                    <div class="gap" style="font-size: 25; color: brown;">
+                        <b>Administrator Login</b>
+                    </div>
+                    <div class="gap">
+                        <label for="inputEmail4"><i><b>Email :</b></i></label>
+                        <input type="email" name="emailid" class="form-control" id="inputEmail4" placeholder="Email">
+                    </div>
+                    <div class="gap">
+                        <label for="inputPassword4"><i><b>Password :</b></i></label>
+                        <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="Password">
+                    </div>
+                    <div class="gap">
+                        <button type="submit" style="width: 180px;" class="btn btn-primary">Login</button>
+                    </div>
+                    <div>
+                        <%=msg%>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </form>
+    </body>
+</html>

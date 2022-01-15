@@ -1,0 +1,183 @@
+<style>
+    .root {
+        display: flex;
+       
+        justify-content: center;
+
+
+    }
+
+    .box {
+        width: 900px;
+        /* height: 500px; */
+        background-color: #d7d894;
+        border-radius: 20px;
+        margin-top: 70px;
+        padding: 20px;
+        /* display: flex; */
+        position: absolute;
+    }
+
+    .gap {
+        margin-top: 10px;
+    }
+
+
+    .dashboard {
+        /* width: 1000px; */
+        height: 565px;
+        background-color: #f1f2f6;
+        /* border-radius: 20px; */
+        /* margin-top: 70px; */
+        padding: 10px;
+        width: 300px;
+    }
+
+    .dgap {
+        margin-top: 15px;
+        width: 250px;
+    }
+</style>
+<html>
+
+<head>
+    <title>Product database</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/94afcec69c.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="/images/product.png" width="30" height="30" class="d-inline-block align-top" alt="no image found">
+            Product Management
+        </a>
+        <div>
+            <img src="/images/<%=resulT.picture%>" style="border-radius: 16px; width: 30px;" />&nbsp;&nbsp;
+            <span
+                style="font-weight: bold; letter-spacing: 1.5; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size:larger;">
+                <%= resulT.adminName%>
+            </span>
+        </div>
+    </nav>
+    <div class="form-row">
+        <div class="form-group col-md-2" style="display: flex; align-items: center; justify-content:left;">
+            <div class="dashboard">
+                <div><button type="button" href="" class="btn btn-light dgap"
+                        style="font-size:16px; font-weight:bold ;">Dashboard</button></div>
+                <div><a type="button" href="/home/productinterface" class="btn btn-light dgap">Add Products</a></div>
+                <div><a type="button" href="/home/displayproducts" class="btn btn-light dgap">List Of Products </a></div>
+                <div><a type="button" href="/home/searchbyid" class="btn btn-light dgap">Serach Products</a></div>
+                <div><a type="button" href="/admin/logout" class="btn btn-light dgap">Logout</a></div>
+            </div>
+        </div>
+        <div class="form-group col-md-10" style="display: flex; justify-content:center;">
+
+            <div class="root">
+                <div class="box">
+                    <div class="row">
+                        <div
+                            style="padding-left: 20px; font-size: 25px; color:rgb(250, 109, 109); font-weight: bolder; letter-spacing:3px;">
+                            <img src="/images/product.png" height="30px" width="30px">
+                            Product List :-
+                        </div>
+                        <div>
+                            <b><a href="/home/productinterface"
+                                    style="width: 495px; display: flex; justify-content: right; font-weight:650; font-size: 25;">Add
+                                    New Product</a></b>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>S.No.</th>
+                                <th>Product Name</th>
+                                <th>Model</th>
+                                <th>Category</th>
+                                <th>Gst</th>
+                                <th>Unit</th>
+                                <th>Price</th>
+                                <th>Offer</th>
+                                <th>Stock</th>
+                                <th>Picture</th>
+                                <th>Update</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            <% if(result){ result.map((items)=>{ %>
+                                <!-- <%= items.productname %> <%=items.productmodel %>, -->
+                                <tr>
+                                    <th>
+                                        <%=items.productid %>
+                                    </th>
+                                    <td>
+                                        <%=items.productname %>
+                                    </td>
+                                    <td>
+                                        <%=items.productmodel %>
+                                    </td>
+                                    <td>
+                                        <%=items.category %>
+                                    </td>
+                                    <td>
+                                        <%=items.gst %>
+                                    </td>
+                                    <td>
+                                        <%=items.unitname %> <br>
+                                            <%=items.producttypename %>
+                                    </td>
+                                    <td>
+                                        <%=items.price %> <br>
+                                            <%=items.currencytype %>
+                                    </td>
+                                    <td>
+                                        <%=items.offerrate %> <br>
+                                            <%=items.offertype %>
+                                    </td>
+                                    <td>
+                                        <%=items.stock %>
+                                    </td>
+
+                                    <td>
+                                        <a
+                                            href="/home/editpicture?pid=<%=items.productid%>&pname=<%=items.productname%>&picture=<%=items.picture%>"><img
+                                                src="/images/<%= items.picture %>" width="40" height="40"></a>
+                                    </td>
+                                    <td>
+                                        <a href="/home/displaybyid?pid=<%=items.productid %>">Edit/Delete</a>
+                                    </td>
+                                </tr>
+                                <% }) %>
+
+                                    <% }else{ %>
+                                        <h1>
+                                            <%= msg %>
+                                        </h1>
+
+                                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+<!-- =========== -->
